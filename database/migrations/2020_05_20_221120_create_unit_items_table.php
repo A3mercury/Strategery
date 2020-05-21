@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateUnitItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('unit_items', function (Blueprint $table) {
             $table->increments('id');
-			$table->timestamp('created')->nullable();
+            $table->timestamp('created')->nullable();
 			$table->timestamp('updated')->nullable();
 			$table->timestamp('deleted')->nullable();
 
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-			$table->rememberToken();
-			
-			$table->boolean('is_super')->nullable();
-			$table->boolean('is_admin')->nullable();
+			$table->integer('unit_id')->unsigned();
+			$table->timestamp('date_added')->nullable();
+			$table->timestamp('date_sold')->nullable();
+			$table->string('status');
+
+			$table->foreign('unit_id')->references('id')->on('units')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 
@@ -37,6 +35,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('unit_items');
     }
 }
