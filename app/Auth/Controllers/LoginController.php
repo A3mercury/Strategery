@@ -2,6 +2,7 @@
 
 namespace App\Auth\Controllers;
 
+use Illuminate\Http\Request;
 use App\Base\Controllers\Controller;
 use App\Base\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -36,5 +37,17 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    }
+	}
+
+	/**
+     * The user has been authenticated.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+	protected function authenticated(Request $request, $user) 
+	{
+		$token = $user->createToken('react-app-token')->plainTextToken;
+	}
 }

@@ -4,7 +4,7 @@ namespace App\Auth\Controllers;
 
 use App\Base\Controllers\Controller;
 use App\Base\Providers\RouteServiceProvider;
-use App\User;
+use App\Users\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -60,7 +60,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Users\User
      */
     protected function create(array $data)
     {
@@ -69,5 +69,18 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+	}
+	
+	/**
+     * The user has been registered.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
+     */
+    protected function registered(Request $request, $user, $token)
+    {
+		$token = $user->createToken('react-app-token')->plainTextToken;
     }
+
 }

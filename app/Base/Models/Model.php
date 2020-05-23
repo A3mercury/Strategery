@@ -133,24 +133,10 @@ abstract class Model extends Eloquent
         return Carbon::parse($date, $this->timezone)->setTimezone('UTC');
     }
 
-    public function __get($key)
-    {
-        if ($this->hasComputedAttribute($key)) {
-            return $this->getComputedAttributeValue($key);
-        }
-
-        return parent::__get($key);
-    }
-
 
     public function hasComputed($key)
     {
         return array_key_exists($key, $this->getAttributes());
-    }
-
-    public function hasComputedAttribute($key)
-    {
-        return method_exists($this, camel_case('computed_'.$key));
     }
 
     public function loadComputed($keys)
@@ -162,43 +148,6 @@ abstract class Model extends Eloquent
         }
 
         return $this;
-    }
-
-    public function getComputedAttributeValue($key)
-    {
-        if ($this->hasComputed($key)) {
-            return $this->getAttribute($key);
-        }
-
-        $method = camel_case('computed_'.$key);
-        $table = $this->getTable();
-        $translator = $this->getComputedModelKeyTranslator($table, $this);
-        $subQuery = $this->$method($translator);
-        $subQuery = $this->getNormalizedComputedSubQuery($subQuery);
-        $value = $subQuery->value($key);
-
-        $this->setAttribute($key, $value);
-
-        return $this->getAttribute($key);
-    }
-
-    public function scopeWithComputed($query, $keys)
-    {
-        $keys = is_string($keys) ? [$keys] : $keys;
-
-        foreach ($keys as $key) {
-            $method = camel_case('computed_'.$key);
-            $table = $query->getQuery()->from;
-            $translator = $this->getComputedModelKeyTranslator($table);
-            $subQuery = $this->$method($translator);
-            $subQuery = $this->getNormalizedComputedSubQuery($subQuery);
-
-            if (is_null($query->getQuery()->columns)) {
-                $query->select($table.'.*');
-            }
-
-            $query->selectSub($subQuery, $key);
-        }
     }
 
     protected function getComputedModelKeyTranslator(...$parameters)

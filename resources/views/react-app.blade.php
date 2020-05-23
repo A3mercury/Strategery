@@ -2,6 +2,6 @@
 
 @section('content')
 
-<div id="example"></div>
+<div id="reactApp"></div>
 
 @endsection
