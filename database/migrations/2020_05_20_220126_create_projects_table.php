@@ -20,9 +20,9 @@ class CreateProjectsTable extends Migration
 			$table->timestamp('deleted')->nullable();
 
 			$table->integer('user_id')->unsigned();
-			$table->integer('team_id')->unsigned();
+			$table->integer('team_id')->nullable()->unsigned();
 			$table->string('name')->default('');
-			$table->string('description')->default('');
+			$table->string('description')->nullable()->default('');
 			$table->timestamp('started')->nullable();
 			$table->timestamp('ended')->nullable();
 

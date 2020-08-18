@@ -2,6 +2,8 @@
 
 namespace App\Users;
 
+use App\Teams\Team;
+use App\Projects\Project;
 use App\Base\Models\Model;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Authenticatable;
@@ -14,11 +16,12 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract, MustVerifyEmail
 {
 	use Authenticatable, Authorizable, HasApiTokens, Notifiable, SoftDeletes;
-    
+	
+	protected $table = 'users';
+
     protected $fillable = [
 		'name', 
 		'email', 
@@ -34,6 +37,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'email_verified_at' => 'datetime',
 	];
 	
+	public function teams()
+	{
+		return $this->belongsToMany(Team::class);
+	}
+
+	public function projects()
+	{
+		return $this->hasMany(Project::class);
+	}
+
 	public function getEmailForPasswordReset()
 	{
 		return $this->email;
@@ -64,6 +77,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
 	public function sendEmailVerificationNotification()
 	{
-		// $this->notify(new )
+		//
+	}
+
+	public function utc($value) 
+	{
+		return $value;
 	}
 }

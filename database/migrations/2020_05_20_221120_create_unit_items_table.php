@@ -20,6 +20,11 @@ class CreateUnitItemsTable extends Migration
 			$table->timestamp('deleted')->nullable();
 
 			$table->integer('unit_id')->unsigned();
+			$table->decimal('price_total')->nullable();
+			$table->decimal('discount')->nullable();
+			$table->decimal('price')->nullable();
+			$table->decimal('tax')->nullable();
+			$table->decimal('shipping')->nullable();
 			$table->timestamp('date_added')->nullable();
 			$table->timestamp('date_sold')->nullable();
 			$table->string('status');

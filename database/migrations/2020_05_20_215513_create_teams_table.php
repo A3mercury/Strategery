@@ -20,7 +20,7 @@ class CreateTeamsTable extends Migration
 			$table->timestamp('deleted')->nullable();
 
 			$table->string('name')->unique();
-			$table->string('description')->default('');
+			$table->string('description')->nullable()->default('');
         });
     }
 

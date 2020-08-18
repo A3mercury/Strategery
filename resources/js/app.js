@@ -12,5 +12,4 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// require('./components/RootComponent');
-require('./components/TestRouteComponent');
+require('./components/Entry');

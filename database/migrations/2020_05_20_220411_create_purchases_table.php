@@ -22,7 +22,7 @@ class CreatePurchasesTable extends Migration
 			$table->integer('user_id')->unsigned();
 			$table->integer('project_id')->unsigned();
 			$table->string('name')->default('');
-			$table->string('description')->default('');
+			$table->string('description')->nullable()->default('');
 			$table->decimal('price_total')->nullable();
 			$table->decimal('price')->nullable();
 			$table->decimal('tax')->nullable();

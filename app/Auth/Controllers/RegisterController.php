@@ -2,12 +2,13 @@
 
 namespace App\Auth\Controllers;
 
-use App\Base\Controllers\Controller;
-use App\Base\Providers\RouteServiceProvider;
 use App\Users\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Base\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Base\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -70,15 +71,27 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 	}
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        // event(new Registered(
+			$user = $this->create($request->all());
+		// ));
+
+        $this->guard()->login($user);
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+                    ? new Response('', 201)
+                    : redirect($this->redirectPath());
+    }
 	
-	/**
-     * The user has been registered.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  mixed  $user
-     * @return mixed
-     */
-    protected function registered(Request $request, $user, $token)
+    protected function registered($request, $user)
     {
 		$token = $user->createToken('react-app-token')->plainTextToken;
     }
