@@ -51,28 +51,30 @@ function Projects() {
 
                                 {projects.map((project) => {
                                     return (
-                                        <div className="bg-white shadow overflow-hidden sm-rounded-md">
+                                        <div key={project.id} className="bg-white shadow overflow-hidden sm-rounded-md">
                                             <ul>
                                                 <li>
-                                                    <a onClick={() => selectProject(project.id)} class="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out">
-                                                        <div class="px-4 py-4 sm:px-6">
-                                                            <div class="flex items-center justify-between">
-                                                                <div class="text-sm leading-5 font-medium text-indigo-600">
+                                                    <a 
+                                                        onClick={() => selectProject(project.id)} 
+                                                        className="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out hover:no-underline cursor-pointer">
+                                                        <div className="px-4 py-4 sm:px-6">
+                                                            <div className="flex items-center justify-between">
+                                                                <div className="text-sm leading-5 font-medium text-indigo-600 hover:no-underline">
                                                                     {project.name}
                                                                 </div>
-                                                                <div class="ml-2 flex-shrink-0 flex">
-                                                                    <span class="p-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-400 text-green-800">
+                                                                <div className="ml-2 flex-shrink-0 flex">
+                                                                    <span className="p-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-400 text-green-800">
                                                                         <FontAwesomeIcon icon="check" className="text-white" />
                                                                     </span>
                                                                 </div>
                                                             </div>
-                                                            <div class="mt-2 sm:flex sm:justify-between">
-                                                                <div class="sm:flex">
-                                                                    <div class="mr-6 flex items-center text-sm leading-5 text-gray-500">
+                                                            <div className="mt-2 sm:flex sm:justify-between">
+                                                                <div className="sm:flex">
+                                                                    <div className="mr-6 flex items-center text-sm leading-5 text-gray-500">
                                                                         {project.description}
                                                                     </div>
                                                                 </div>
-                                                                <div class="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
+                                                                <div className="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
                                                                     <FontAwesomeIcon icon="calendar-alt" size="lg" className="mr-2" />
                                                                     <span className="text-gray-400">Started:</span>&nbsp;{project.started}
                                                                 </div>

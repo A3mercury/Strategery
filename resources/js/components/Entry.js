@@ -10,7 +10,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas, tasks } from '@fortawesome/pro-solid-svg-icons';
 library.add(fas);
 
-import Sidebar from './Sidebar';
+import Sidebar from './Sidebar/Sidebar';
 import Teams from './Teams/Teams';
 import AddTeam from './Teams/AddTeam';
 import Projects from './Projects/Projects';
