@@ -18,6 +18,7 @@ class CreatePurchasesTable extends Migration
             $table->timestamp('created')->nullable();
 			$table->timestamp('updated')->nullable();
 			$table->timestamp('deleted')->nullable();
+			$table->timestamp('purchased')->nullable();
 
 			$table->integer('user_id')->unsigned();
 			$table->integer('project_id')->unsigned();

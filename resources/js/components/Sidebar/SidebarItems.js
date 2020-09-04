@@ -24,7 +24,7 @@ function SidebarItems(props) {
     });
 
     return (
-        <nav className="mt-5 px-2">
+        <div>
             {items.map((item) => {
                 return (
                     <Link
@@ -40,7 +40,7 @@ function SidebarItems(props) {
                     </Link>
                 );
             })}
-        </nav>
+        </div>
     );
 }
 

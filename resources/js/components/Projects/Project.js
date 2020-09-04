@@ -39,7 +39,7 @@ function Project() {
         return (
             <div>
                 <ProjectDetails project={project} />
-                <Purchases />
+                <Purchases purchases={project.purchases} />
             </div>
         );
 

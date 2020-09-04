@@ -5,6 +5,7 @@ namespace App\Projects;
 use App\Teams\Team;
 use App\Users\User;
 use App\Base\Models\Model;
+use App\Purchases\Purchase;
 
 class Project extends Model
 {
@@ -32,5 +33,10 @@ class Project extends Model
 	public function team()
 	{
 		return $this->belongsTo(Team::class);
+	}
+
+	public function purchases()
+	{
+		return $this->hasMany(Purchase::class);
 	}
 }

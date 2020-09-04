@@ -34,7 +34,7 @@ function Entry() {
         <div className="h-screen flex overflow-hidden bg-gray-200">
             <Router>
                 <Sidebar name={user.name} />
-                <div class="container">
+                <div className="container">
                     <Switch>
                         <Route path="/home" exact>
                             <h1>Dashboard</h1> 

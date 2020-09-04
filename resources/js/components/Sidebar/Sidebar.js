@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import AuthService from '../../services/AuthService';
 
 import SidebarItems from './SidebarItems';
 
@@ -8,6 +9,13 @@ function Sidebar({ name, children }) {
 
     const toggleSidebar = () => {
         setShow(!show);
+    }
+
+    const logout = () => {
+        AuthService._logout()
+            .then(() => {
+                location.reload();
+            });
     }
 
     return (
@@ -69,6 +77,15 @@ function Sidebar({ name, children }) {
                         {/* <!-- Sidebar component, swap this element with another sidebar if you like --> */}
                         <nav className="flex-1 px-2 bg-gray-800">
                             <SidebarItems />
+
+                            <button onClick={logout} className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition ease-in-out duration-150 hover:no-underline">
+                                <FontAwesomeIcon 
+                                    icon="sign-out"
+                                    className="mr-4"
+                                    size="lg"
+                                />
+                                Logout
+                            </button>
                         </nav>
                     </div>
                     <div className="flex bg-gray-700 p-4">
