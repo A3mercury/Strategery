@@ -2,6 +2,7 @@
 
 namespace App\Projects\Resources;
 
+use App\Purchases\Resources\PurchasesResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ProjectsResource extends JsonResource
@@ -16,6 +17,8 @@ class ProjectsResource extends JsonResource
 			'description' => $this->description,
 			'started' => $this->started->format('F jS, Y'),
 			'ended' => $this->ended,
+
+			'purchases' => PurchasesResource::collection($this->purchases),
 		];
 	}
 }

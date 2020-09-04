@@ -31,12 +31,13 @@ function Entry() {
     }, []);
 
     return (
-        <div className="h-screen flex overflow-hidden bg-gray-100">
+        <div className="h-screen flex overflow-hidden bg-gray-200">
             <Router>
                 <Sidebar name={user.name} />
+                <div class="container">
                     <Switch>
-                        <Route path="/" exact>
-                            <h1>Dashboard</h1>
+                        <Route path="/home" exact>
+                            <h1>Dashboard</h1> 
                         </Route>
                         <Route path="/teams">
                             <Teams />
@@ -60,7 +61,7 @@ function Entry() {
                             <UnitItems />
                         </Route>
                     </Switch>
-
+                </div>
             </Router>
         </div>
     );

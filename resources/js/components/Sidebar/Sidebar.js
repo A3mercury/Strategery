@@ -1,9 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {
-    BrowserRouter as Router,
-    Link,
-    useLocation
-} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import SidebarItems from './SidebarItems';
@@ -11,22 +6,12 @@ import SidebarItems from './SidebarItems';
 function Sidebar({ name, children }) {
     const [show, setShow] = useState(false);
 
-    const mobileSidebarStyle = 'mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition ease-in-out duration-150';
-    const mobileSidebarStyleSelected = 'group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-white bg-gray-900 focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150';
-    const sidebarStyle = 'mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-300 rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition ease-in-out duration-150';
-    const sidebarStyleSelected = 'mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-white rounded-md bg-gray-900 focus:outline-none focus:bg-gray-700 transition ease-in-out duration-150';
-
-    let location = useLocation();
-    useEffect(() => {
-        console.log(location.pathname);
-    }, [location]);
-
     const toggleSidebar = () => {
         setShow(!show);
     }
 
     return (
-        <div className="h-screen flex overflow-hidden bg-gray-100">
+        <div className="h-screen flex overflow-hidden bg-gray-200">
             
             {/* <!-- Off-canvas menu for mobile --> */}
             <div className="md:hidden">
