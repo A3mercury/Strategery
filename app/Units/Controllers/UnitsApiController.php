@@ -3,6 +3,7 @@
 namespace App\Units\Controllers;
 
 use App\Units\Unit;
+use App\Projects\Project;
 use Illuminate\Support\Facades\DB;
 use App\Base\Controllers\Controller;
 use App\Units\Resources\UnitsResource;
@@ -11,8 +12,15 @@ class UnitsApiController extends Controller
 {
 	public function index()
 	{
+		if (request()->has('project')) {
+			$project = Project::find(request()->get('project'));
+			return UnitsResource::collection(
+				$project->units
+			);
+		}
+		
 		return UnitsResource::collection(
-			Unit::all(),
+			Unit::all()
 		);
 	}
 

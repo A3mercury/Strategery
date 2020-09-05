@@ -3,6 +3,7 @@
 namespace App\Projects;
 
 use App\Teams\Team;
+use App\Units\Unit;
 use App\Users\User;
 use App\Base\Models\Model;
 use App\Purchases\Purchase;
@@ -38,5 +39,10 @@ class Project extends Model
     public function purchases()
     {
         return $this->hasMany(Purchase::class);
+    }
+
+    public function units()
+    {
+        return $this->hasMany(Unit::class);
     }
 }
