@@ -7,11 +7,13 @@ import { isEmpty } from 'lodash';
 
 function Purchases(props) {
     const [purchases, setPurchases] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         PurchasesService._index(props.project?.id)
             .then((response) => {
                 setPurchases(response);
+                setLoading(false);
             })
     }, []);
 
@@ -19,11 +21,14 @@ function Purchases(props) {
         $('#purchase_details_'+id).slideToggle(400);
     }
 
-	return (
-		<div className="mb-20">
-			<h1 className="text-2xl font-semibold text-gray-900 py-6">
-				Purchases
-			</h1>
+    return (
+        <div className="mb-20">
+            <h1 className="text-2xl font-semibold text-gray-900 py-6">
+                Purchases
+            </h1>
+
+            {loading && <p>Loading...</p>}
+            
             <div className="bg-white rounded-lg">
                 <ul>
                     {!isEmpty(purchases) && purchases.map((purchase) => {
@@ -36,18 +41,22 @@ function Purchases(props) {
                                                 {purchase.name}
                                             </div>
                                             <div className="ml-2 flex-shrink-0 flex">
+                                                <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-100 text-gray-800">
+                                                    {purchase.type}
+                                                </span>
                                                 <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                     {purchase.status}
                                                 </span>
                                             </div>
                                         </div>
-                                        <div className="sm:flex sm:justify-between">
+                                        <div className="sm:flex sm:justify-between"> 
                                             <div className="mt-2 flex items-center text-sm leading-5 text-gray-500 sm:mt-0">
                                                 <svg className="flex-shrink-0 mr-1.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                                                 </svg>
                                                 <span className="text-gray-400">Purchased:</span>&nbsp;{purchase.purchased}
                                             </div>
+                                            
                                             <div className="mt-2 flex items-center text-sm leading-5 text-gray-700 sm:mt-0">
                                                 Details&nbsp;
                                                 <FontAwesomeIcon 
@@ -116,8 +125,8 @@ function Purchases(props) {
                         )})}
                 </ul>
             </div>
-		</div>
-	);
+        </div>
+    );
 }
 
 export default Purchases;

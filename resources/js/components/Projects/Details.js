@@ -6,7 +6,7 @@ function ProjectDetails({ project }) {
         <div>
             <h1 className="text-2xl font-semibold text-gray-900 py-6">
                 Project Details
-			</h1>
+            </h1>
             <div className="bg-white overflow-hidden rounded-lg">
                 <ul>
                     <li>

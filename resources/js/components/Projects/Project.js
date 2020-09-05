@@ -6,6 +6,7 @@ import ProjectsService from '../../services/ProjectsService';
 
 import ProjectDetails from './Details';
 import Purchases from '../Purchases';
+import Units from '../Units';
 
 const tabs = [
     { id: 1, title: 'Purchases', icon: 'shopping-cart', slug: 'purchases' },
@@ -35,7 +36,7 @@ function Project() {
             case 'purchases':
                 return <Purchases project={project} />;
             case 'units':
-                return <p>Units</p>
+                return <Units project={project} />;
             case 'sales':
                 return <p>Sales</p>
             default: 
