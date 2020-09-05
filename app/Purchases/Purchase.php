@@ -27,6 +27,10 @@ class Purchase extends Model
 		'status',
 	];
 
+	protected $casts = [
+		'purchased' => 'datetime',
+	];
+
 	public static $types = [
 		'reocurring' => 'Reocurring',
 		'investment' => 'Investment',

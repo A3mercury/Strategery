@@ -31,10 +31,10 @@ function Entry() {
     }, []);
 
     return (
-        <div className="h-screen flex overflow-hidden bg-gray-200">
+        <div className="h-screen flex bg-gray-200">
             <Router>
                 <Sidebar name={user.name} />
-                <div className="container">
+                <div className="container overflow-auto">
                     <Switch>
                         <Route path="/home" exact>
                             <h1>Dashboard</h1> 

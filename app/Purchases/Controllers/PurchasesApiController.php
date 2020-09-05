@@ -2,6 +2,7 @@
 
 namespace App\Purchases\Controllers;
 
+use App\Projects\Project;
 use App\Purchases\Purchase;
 use App\Base\Controllers\Controller;
 use App\Purchases\Resources\PurchasesResource;
@@ -10,8 +11,15 @@ class PurchasesApiController extends Controller
 {
 	public function index()
 	{
+		if (request()->has('project')) {
+			$project = Project::where('id', request()->get('project'))->first();
+			return PurchasesResource::collection(
+				$project->purchases
+            );
+		}
+
 		return PurchasesResource::collection(
-			Purchase::all(),
+			Purchase::get()
 		);
 	}
 

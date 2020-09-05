@@ -75,10 +75,10 @@ function Sidebar({ name, children }) {
                             <img className="h-8 w-auto" src="/img/logos/workflow-logo-on-dark.svg" alt="Workflow" />
                         </div>
                         {/* <!-- Sidebar component, swap this element with another sidebar if you like --> */}
-                        <nav className="flex-1 px-2 bg-gray-800">
+                        <nav className="flex-1 px-2 bg-gray-800 mt-8">
                             <SidebarItems />
 
-                            <button onClick={logout} className="mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition ease-in-out duration-150 hover:no-underline">
+                            <button onClick={logout} className="w-full mt-1 group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700 transition ease-in-out duration-150 hover:no-underline">
                                 <FontAwesomeIcon 
                                     icon="sign-out"
                                     className="mr-4"

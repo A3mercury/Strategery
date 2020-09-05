@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function ProjectDetails({ project }) {
-
     return (
         <div>
             <h1 className="text-2xl font-semibold text-gray-900 py-6">

@@ -18,7 +18,7 @@ class ProjectsResource extends JsonResource
 			'started' => $this->started->format('F jS, Y'),
 			'ended' => $this->ended,
 
-			'purchases' => $this->purchases,
+			// 'purchases' => PurchasesResource::collection($this->purchases),
 		];
 	}
 }

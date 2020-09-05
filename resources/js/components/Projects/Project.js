@@ -8,10 +8,9 @@ import ProjectDetails from './Details';
 import Purchases from '../Purchases';
 
 const tabs = [
-    { id: 1, title: 'Details', icon: 'tasks', slug: 'details' },
-    { id: 2, title: 'Purchases', icon: 'shopping-cart', slug: 'purchases' },
-    { id: 3, title: 'Units', icon: 'boxes', slug: 'units' },
-    { id: 4, title: 'Sales', icon: 'money-bill-alt', slug: 'sales' },
+    { id: 1, title: 'Purchases', icon: 'shopping-cart', slug: 'purchases' },
+    { id: 2, title: 'Units', icon: 'boxes', slug: 'units' },
+    { id: 3, title: 'Sales', icon: 'money-bill-alt', slug: 'sales' },
 ];
 
 function Project() {
@@ -32,34 +31,22 @@ function Project() {
     }, []);
 
     const renderTab = () => {
-        if (loading) {
-            return <p>Loading...</p>;
+        switch (!loading && tab) {
+            case 'purchases':
+                return <Purchases project={project} />;
+            case 'units':
+                return <p>Units</p>
+            case 'sales':
+                return <p>Sales</p>
+            default: 
+                return <p>Loading...</p>;
         }
-
-        return (
-            <div>
-                <ProjectDetails project={project} />
-                <Purchases purchases={project.purchases} />
-            </div>
-        );
-
-        // switch (!loading && tab) {
-        //     case 'details':
-        //         return <ProjectDetails project={project} />;
-        //     case 'purchases':
-        //         return <p>Purchases</p>
-        //     case 'units':
-        //         return <p>Units</p>
-        //     case 'sales':
-        //         return <p>Sales</p>
-        //     default: 
-        //         return <p>Loading...</p>;
-        // }
     }
 
     return (
         <div>
-            {/* <div className="border-b border-gray-200">
+            {project && <ProjectDetails project={project} />}
+            <div className="border-b border-gray-200">
                 <nav className="flex -mb-px">
                     {tabs.map((item) => {
                         return (
@@ -77,7 +64,7 @@ function Project() {
                         );
                     })}
                 </nav>
-            </div> */}
+            </div>
 
             {renderTab()}
         

@@ -35,11 +35,11 @@ function Projects() {
                             </h1>
                         </div>
                         <div className="ml-4 mt-4 flex-shrink-0">
-                            <span className="inline-flex rounded-md shadow-sm">
+                            <span className="inline-flex rounded-md">
                                 <Link 
                                     to={`${match.path}/new-project`}
                                     type="button" 
-                                    className="relative inline-flex items-center px-4 py-3 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:shadow-outline-indigo focus:border-indigo-700 active:bg-indigo-700">
+                                    className="relative inline-flex items-center px-4 py-3 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 active:bg-indigo-700">
                                     <FontAwesomeIcon icon="plus" size="1x" />
                                 </Link>
                             </span>
@@ -47,15 +47,14 @@ function Projects() {
                     </div>
                     <div className="flex flex-col">
                         <div className="-my-2 pt-2 pb-10 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                            <div className="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+                            <div className="align-middle inline-block min-w-full overflow-hidden sm:rounded-lg border-b border-gray-200">
 
                                 {projects.map((project) => {
                                     return (
-                                        <div key={project.id} className="bg-white shadow overflow-hidden sm-rounded-md">
+                                        <div key={project.id} className="bg-white overflow-hidden sm-rounded-md">
                                             <ul>
-                                                <li>
-                                                    <a 
-                                                        onClick={() => selectProject(project.id)} 
+                                                <li className="border-b border-gray-200">
+                                                    <a onClick={() => selectProject(project.id)} 
                                                         className="block hover:bg-gray-50 focus:outline-none focus:bg-gray-50 transition duration-150 ease-in-out hover:no-underline cursor-pointer">
                                                         <div className="px-4 py-4 sm:px-6">
                                                             <div className="flex items-center justify-between">

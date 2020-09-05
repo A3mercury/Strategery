@@ -23,6 +23,7 @@ class PurchasesResource extends JsonResource
 			'type' => Purchase::$types[$this->type],
 			'link_url' => $this->link_url,
 			'status' => Purchase::$statuses[$this->status],
+			'purchased' => $this->purchased->format('F jS, Y'),
 		];
 	}
 }
