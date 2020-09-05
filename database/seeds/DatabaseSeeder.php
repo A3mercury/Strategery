@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProjectSeeder::class,
             PurchaseSeeder::class,
+            UnitSeeder::class,
         ]);
     }
 }

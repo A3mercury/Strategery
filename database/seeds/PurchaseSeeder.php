@@ -15,13 +15,28 @@ class PurchaseSeeder extends Seeder
     {
         $user = DB::table('users')->where('email', 'austin@aandrews.us')->first();
         $project = DB::table('projects')->where('name', 'Artisan Keycaps')->first();
+        $now = Carbon::create($project->started);
         
         // Single Purchase
+        DB::table('purchases')->insert([
+            'user_id' => $user->id,
+            'project_id' => $project->id,
+            'name' => 'Shop Fox W1799 2-1/4 gallon Paint Tank',
+            'description' => 'With a 2-1/4 Gallon capacity, this Paint Tank features a galvanized steel tank, double output regulator and pressure relief/safety valve. Lid gasket and clamps stay attached during lid removal.',
+            'price_total' => 139.99,
+            'price' => 120.00,
+            'tax' => 19.99,
+            'shipping' => 0.00,
+            'link_url' => 'https://www.amazon.com/dp/B005W1CE4W/ref=cm_sw_em_r_mt_dp_-8avFb8A3T1BA',
+            'status' => 'shipped',
+            'type' => 'tool',
+            'created' => Carbon::now(),
+            'updated' => Carbon::now(),
+            'purchased' => $now,
+        ]);
 
         // Reocurring
         for ($i = 0; $i < 10; $i++) {
-            $now = Carbon::create($project->started);
-
             DB::table('purchases')->insert([
                 'user_id' => $user->id,
                 'project_id' => $project->id,
