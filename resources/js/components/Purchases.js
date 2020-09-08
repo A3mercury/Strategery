@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ReactPaginate from 'react-paginate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Paginator from './Paginator';
 
 import PurchasesService from '../services/PurchasesService';
 import { isEmpty } from 'lodash';
@@ -8,14 +8,26 @@ import { isEmpty } from 'lodash';
 function Purchases(props) {
     const [purchases, setPurchases] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [paginatorMeta, setMeta] = useState({});
 
     useEffect(() => {
-        PurchasesService._index(props.project?.id)
-            .then((response) => {
-                setPurchases(response);
-                setLoading(false);
-            })
+        getPurchases();
     }, []);
+
+    const getPurchases = (page = null) => {
+        setLoading(true);
+        PurchasesService._index(props.project?.id, page)
+            .then((response) => {
+                setPurchases(response.data);
+                setMeta(response.meta);
+                setLoading(false);
+            });
+    }
+
+    const goToPage = (page) => {
+        console.log(page);
+        getPurchases(page);
+    }
 
     const toggleDetails = (id) => {
         $('#purchase_details_'+id).slideToggle(400);
@@ -125,6 +137,12 @@ function Purchases(props) {
                         )})}
                 </ul>
             </div>
+
+            <Paginator 
+                data={paginatorMeta}
+                handlePageChange={(page) => goToPage(page)}
+            />
+
         </div>
     );
 }

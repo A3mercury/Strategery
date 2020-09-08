@@ -14,7 +14,7 @@ class PurchasesApiController extends Controller
 		if (request()->has('project')) {
 			$project = Project::where('id', request()->get('project'))->first();
 			return PurchasesResource::collection(
-				$project->purchases
+				$project->purchases()->paginate(1)
             );
 		}
 
