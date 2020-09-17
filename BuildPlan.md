@@ -23,8 +23,8 @@
 - [ ] Unit Items reflecting actual inventory count
 - [ ] Units page should show all Units for the authenticated User, filterable
 #### Purchases
-- [ ] Add new Purchase(s) to Project as Team member
-- [ ] Update Purchase(s) as Team member
+- [x] Add new Purchase(s) to Project as Team member
+- [x] Update Purchase(s) as Team member
 - [ ] Delete Purchase as owner or admin
 - [ ] Purchases page should show all Purchases for the authenticated User, filterable
 #### Sales
